@@ -98,15 +98,20 @@ obtainInstruction('steak', num)
 // Iteration 3 using async/await
 
 async function makeBroccoli() {
-
-  let num2 = 0;
-  for(let i=0; i<broccoli.length; i++){
-    let instruction = await obtainInstruction('broccoli', num2);
-    document.querySelector("#broccoli").innerHTML += `<li>${instruction}</li>`;
-    num2++;
+  
+  try{
+    let num2 = 0;
+    for(let i=0; i<broccoli.length; i++){
+      let instruction = await obtainInstruction('broccoli', num2);
+      document.querySelector("#broccoli").innerHTML += `<li>${instruction}</li>`;
+      num2++;
+    }
+    document.querySelector("#broccoli").innerHTML += `<li>Broccoli is ready!</li>`;
+    document.getElementById("broccoliImg").removeAttribute("hidden");
+  }catch(error){
+    console.log(error);
   }
-  document.querySelector("#broccoli").innerHTML += `<li>Broccoli is ready!</li>`;
-  document.getElementById("broccoliImg").removeAttribute("hidden");
+  
 };
 
 makeBroccoli();
